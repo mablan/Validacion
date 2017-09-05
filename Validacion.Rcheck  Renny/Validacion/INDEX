@@ -1,0 +1,22 @@
+Lacteos                 Datos reales y resultados de la simulación de
+                        la producción de quesos madurados
+Mixteque                Dinámica de agua en el suelo durante el ciclo
+                        del cultivo de papa en la población de
+                        Mixteque en el páramo andino
+PlanktonM               Datos de phytoplankton y biomasa de zooplankton
+                        de un modelo
+PlanktonR               Datos observados de phytoplankton y biomasa de
+                        zooplankton
+ValAIC                  Coeficiente de información de Akaike (AIC)
+ValBayes                Inferencia bayesiana
+ValCorrela              Coeficiente de correlacián de Spearman (ro)
+ValEF                   Indice de Eficiencia (EF)
+ValMAE                  Error Absoluto Medio (MAE)
+ValMSE                  Error cuadrático medio (MSE)
+ValProfile              Análisis de Perfil (Profile Analysis)
+ValPruebaF              Prueba F de Fisher
+ValPruebat              Prueba t de Student
+ValR2                   Coeficiente de determinación R cuadrado
+ValTheil                Indice de Theil
+ValWillmott             Indice de ajuste Willmott
+Validacion-package      Validación de Modelos de Simulación

@@ -1,0 +1,851 @@
+
+R version 2.15.3 (2013-03-01) -- "Security Blanket"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "Validacion"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> library('Validacion')
+Loading required package: ICSNP
+Loading required package: mvtnorm
+Loading required package: ICS
+Loading required package: survey
+
+Attaching package: 'survey'
+
+The following object(s) are masked from 'package:graphics':
+
+    dotchart
+
+> 
+> assign(".oldSearch", search(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("Lacteos")
+> ### * Lacteos
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Lacteos
+> ### Title: Datos reales y resultados de la simulaci<c3><b3>n de la
+> ###   producci<c3><b3>n de quesos madurados
+> ### Aliases: Lacteos
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(Lacteos)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("Mixteque")
+> ### * Mixteque
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Mixteque
+> ### Title: Din<c3><a1>mica de agua en el suelo durante el ciclo del cultivo
+> ###   de papa en la poblaci<c3><b3>n de Mixteque en el p<c3><a1>ramo andino
+> ### Aliases: Mixteque
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(Mixteque)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("PlanktonM")
+> ### * PlanktonM
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: PlanktonM
+> ### Title: Datos de phytoplankton y biomasa de zooplankton de un modelo
+> ### Aliases: PlanktonM
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(PlanktonM)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("PlanktonR")
+> ### * PlanktonR
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: PlanktonR
+> ### Title: Datos observados de phytoplankton y biomasa de zooplankton
+> ### Aliases: PlanktonR
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(PlanktonR)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValAIC")
+> ### * ValAIC
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValAIC
+> ### Title: Coeficiente de informaci<c3><b3>n de Akaike (AIC)
+> ### Aliases: ValAIC
+> ### Keywords: Coeficiente de InformaciÃ³n de Akaike
+> 
+> ### ** Examples
+> 
+> AICmat<-matrix(0,3,3)
+> K<-c(7,12,12)
+> 
+> data(Mixteque)
+> ModelosBaja<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> DatosBaja<-data.frame(Mixteque$Mod1DatosBaja)
+> 
+> ModelosMedia<-data.frame(Mixteque$Mod1SimulaMedia,Mixteque$Mod2SimulaMedia,Mixteque$Mod3SimulaMedia)
+> DatosMedia<-data.frame(Mixteque$Mod1DatosMedia)
+> 
+> ModelosAlta<-data.frame(Mixteque$Mod1SimulaAlta,Mixteque$Mod2SimulaAlta,Mixteque$Mod3SimulaAlta)
+> DatosAlta<-data.frame(Mixteque$Mod1DatosAlta)
+> 
+> 
+> AICmat[1,]<-ValAIC(ModelosBaja,DatosBaja,K)$AIC
+> AICmat[2,]<-ValAIC(ModelosMedia,DatosMedia,K)$AIC
+> AICmat[3,]<-ValAIC(ModelosAlta,DatosAlta,K)$AIC
+> 
+> AICmat
+           [,1]       [,2]      [,3]
+[1,] -1134.5932 -1076.8033 -1092.405
+[2,]  -996.7739 -1199.2870 -1244.462
+[3,] -1124.3348  -967.3274 -1044.859
+> 
+> minimo<-apply(AICmat,1,min)
+> AICmatG<-sweep(AICmat,1,minimo)
+> 
+> AICmatG
+         [,1]      [,2]     [,3]
+[1,]   0.0000  57.78995 42.18788
+[2,] 247.6883  45.17514  0.00000
+[3,]   0.0000 157.00741 79.47540
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValBayes")
+> ### * ValBayes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValBayes
+> ### Title: Inferencia bayesiana
+> ### Aliases: ValBayes
+> ### Keywords: Bayes
+> 
+> ### ** Examples
+> 
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValBayes(x,y)
+[1] 9.999999e-01 4.193194e-11 1.024451e-07
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValCorrela")
+> ### * ValCorrela
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValCorrela
+> ### Title: Coeficiente de correlaci<c3><a1>n de Spearman (ro)
+> ### Aliases: ValCorrela
+> ### Keywords: CorrelaciÃ³n
+> 
+> ### ** Examples
+> 
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValCorrela(x, y)
+$Correlacion
+               Modelo 1
+Observación 1 0.1340721
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValEF")
+> ### * ValEF
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValEF
+> ### Title: Indice de Eficiencia (EF)
+> ### Aliases: ValEF
+> ### Keywords: Indice de eficiencia
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValEF(x,y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$Eficiencia
+               Modelo 1  Modelo 2  Modelo 3
+Observación 1 0.3624154 0.1286536 0.2131282
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValEF(x, y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$Eficiencia
+                Modelo 1
+Observación 1 -0.1253948
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValMAE")
+> ### * ValMAE
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValMAE
+> ### Title: Error Absoluto Medio (MAE)
+> ### Aliases: ValMAE
+> ### Keywords: Error Absoluto Medio
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValMAE(x,y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$mae
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.01892231 0.02513154 0.02277538
+
+$pmae
+              Modelo 1 Modelo 2 Modelo 3
+Observación 1 6.020829 7.996524 7.246827
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValMAE(x, y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$mae
+              Modelo 1
+Observación 1 91.54667
+
+$pmae
+              Modelo 1
+Observación 1 27.29335
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValMSE")
+> ### * ValMSE
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValMSE
+> ### Title: Error cuadr<c3><a1>tico medio (MSE)
+> ### Aliases: ValMSE
+> ### Keywords: Error cuadrÃ¡tico medio
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValMSE(x,y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$mse
+                  Modelo 1     Modelo 2     Modelo 3
+Observación 1 0.0006463032 0.0008832615 0.0007976317
+
+$rmse
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.02542249 0.02971972 0.02824237
+
+$prmse
+              Modelo 1 Modelo 2 Modelo 3
+Observación 1 8.089102 9.456422 8.986351
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValMSE(x, y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$mse
+              Modelo 1
+Observación 1 15164.23
+
+$rmse
+              Modelo 1
+Observación 1 123.1431
+
+$prmse
+              Modelo 1
+Observación 1 36.71339
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValProfile")
+> ### * ValProfile
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValProfile
+> ### Title: An<c3><a1>lisis de Perfil (Profile Analysis)
+> ### Aliases: ValProfile
+> ### Keywords: AnÃ¡lisis de perfil
+> 
+> ### ** Examples
+> 
+> data(PlanktonR) #Ejemplo 8.2 pag. 160 de Haefner
+> data(PlanktonM)
+> ValProfile(PlanktonM,PlanktonR,3)
+$T2
+[1] 0.3843387
+
+$valorp
+[1] 0.9837389
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValPruebaF")
+> ### * ValPruebaF
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValPruebaF
+> ### Title: Prueba F de Fisher
+> ### Aliases: ValPruebaF
+> ### Keywords: Prueba F de Fisher
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValPruebaF(x,y)
+$F
+              Modelo 1 Modelo 2 Modelo 3
+Observación 1 84.28787 152.7058 29.93727
+
+$p
+                  Modelo 1     Modelo 2     Modelo 3
+Observación 1 4.413239e-24 1.258358e-34 2.157204e-11
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValPruebaF(x, y)
+$F
+               Modelo 1
+Observación 1 0.7299723
+
+$p
+               Modelo 1
+Observación 1 0.5059265
+
+>     
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValPruebat")
+> ### * ValPruebat
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValPruebat
+> ### Title: Prueba t de Student
+> ### Aliases: ValPruebat
+> ### Keywords: Prueba t de Student
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValPruebat(x,y)
+$Estadisticot
+              Modelo 1 Modelo 2 Modelo 3
+Observación 1 11.28782 17.12715 5.301031
+
+$p
+                Modelo 1     Modelo 2     Modelo 3
+Observación 1 5.6307e-21 5.027697e-35 4.841178e-07
+
+$limiteinferiorIC
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.01477962 0.02190721 0.00748648
+
+$limitesuperiorIC
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.02106191 0.02762971 0.01640275
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValPruebat(x, y)
+$Estadisticot
+               Modelo 1
+Observación 1 0.3919822
+
+$p
+               Modelo 1
+Observación 1 0.7025591
+
+$limiteinferiorIC
+               Modelo 1
+Observación 1 -66.70233
+
+$limitesuperiorIC
+              Modelo 1
+Observación 1 95.60899
+
+> 
+> ##Si no se coloca valor de nivel de confianza, por defecto es 0.95
+> ##De lo contrario para un nivel de confianza de 90%
+> 
+> ValPruebat(x,y,0.90)
+$Estadisticot
+               Modelo 1
+Observación 1 0.3919822
+
+$p
+               Modelo 1
+Observación 1 0.7025591
+
+$limiteinferiorIC
+               Modelo 1
+Observación 1 -66.70233
+
+$limitesuperiorIC
+              Modelo 1
+Observación 1 95.60899
+
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValR2")
+> ### * ValR2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValR2
+> ### Title: Coeficiente de determinaci<c3><b3>n R cuadrado
+> ### Aliases: ValR2
+> ### Keywords: Coeficiente de determinaciÃ³n R cuadrado
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValR2(x,y)
+$rcuadrado
+              Modelo 1  Modelo 2  Modelo 3
+Observación 1 0.724823 0.7426642 0.4638998
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValR2(x, y)
+$rcuadrado
+                Modelo 1
+Observación 1 0.01797534
+
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValTheil")
+> ### * ValTheil
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValTheil
+> ### Title: Indice de Theil
+> ### Aliases: ValTheil
+> ### Keywords: Indice de Theil
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValTheil(x,y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+$MC
+               Modelo 1  Modelo 2  Modelo 3
+Observación 1 0.4969092 0.6945584 0.1788718
+
+$SC
+                Modelo 1    Modelo 2     Modelo 3
+Observación 1 0.00660091 0.002258459 0.0002081518
+
+$RC
+               Modelo 1  Modelo 2 Modelo 3
+Observación 1 0.4964899 0.3031831  0.82092
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValTheil(x, y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+Warning: sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead.
+$MC
+                Modelo 1
+Observación 1 0.01377576
+
+$SC
+               Modelo 1
+Observación 1 0.2296194
+
+$RC
+               Modelo 1
+Observación 1 0.7566048
+
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ValWillmott")
+> ### * ValWillmott
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ValWillmott
+> ### Title: Indice de ajuste Willmott
+> ### Aliases: ValWillmott
+> ### Keywords: Indice de ajuste Willmott
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValWillmott(x,y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$W
+               Modelo 1  Modelo 2  Modelo 3
+Observación 1 0.8607115 0.8081238 0.7984935
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValWillmott(x, y)
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+Warning: mean(<data.frame>) is deprecated.
+ Use colMeans() or sapply(*, mean) instead.
+$W
+               Modelo 1
+Observación 1 0.4324588
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("Validacion-package")
+> ### * Validacion-package
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Validacion-package
+> ### Title: Validaci<c3><b3>n de Modelos de Simulaci<c3><b3>n
+> ### Aliases: Validacion-package Validacion
+> ### Keywords: validacion
+> 
+> ### ** Examples
+> 
+> ## Ejemplo1
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValPruebat(x,y)
+$Estadisticot
+              Modelo 1 Modelo 2 Modelo 3
+Observación 1 11.28782 17.12715 5.301031
+
+$p
+                Modelo 1     Modelo 2     Modelo 3
+Observación 1 5.6307e-21 5.027697e-35 4.841178e-07
+
+$limiteinferiorIC
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.01477962 0.02190721 0.00748648
+
+$limitesuperiorIC
+                Modelo 1   Modelo 2   Modelo 3
+Observación 1 0.02106191 0.02762971 0.01640275
+
+> 
+> ## Ejemplo2
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValPruebat(x, y)
+$Estadisticot
+               Modelo 1
+Observación 1 0.3919822
+
+$p
+               Modelo 1
+Observación 1 0.7025591
+
+$limiteinferiorIC
+               Modelo 1
+Observación 1 -66.70233
+
+$limitesuperiorIC
+              Modelo 1
+Observación 1 95.60899
+
+> 
+> ##Si no se coloca valor de nivel de confianza, por defecto es 0.95
+> ##De lo contrario para un nivel de confianza de 90%
+> 
+> ValPruebat(x,y,0.90)
+$Estadisticot
+               Modelo 1
+Observación 1 0.3919822
+
+$p
+               Modelo 1
+Observación 1 0.7025591
+
+$limiteinferiorIC
+               Modelo 1
+Observación 1 -66.70233
+
+$limitesuperiorIC
+              Modelo 1
+Observación 1 95.60899
+
+> 
+> ## Ejemplo3
+> data(Mixteque)
+> x<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> y<-data.frame(Mixteque$Mod1DatosBaja)
+> ValR2(x,y)
+$rcuadrado
+              Modelo 1  Modelo 2  Modelo 3
+Observación 1 0.724823 0.7426642 0.4638998
+
+> 
+> ## Ejemplo4
+> data(Lacteos)
+> x<-Lacteos$InventarioGrutaBacterianaSimula
+> y<-Lacteos$InventarioGrutaBacterianaDatos
+> ValR2(x, y)
+$rcuadrado
+                Modelo 1
+Observación 1 0.01797534
+
+> 
+> ## Ejemplo5
+> AICmat<-matrix(0,3,3)
+> K<-c(7,12,12)
+> 
+> data(Mixteque)
+> ModelosBaja<-data.frame(Mixteque$Mod1SimulaBaja,Mixteque$Mod2SimulaBaja,Mixteque$Mod3SimulaBaja)
+> DatosBaja<-data.frame(Mixteque$Mod1DatosBaja)
+> 
+> ModelosMedia<-data.frame(Mixteque$Mod1SimulaMedia,Mixteque$Mod2SimulaMedia,Mixteque$Mod3SimulaMedia)
+> DatosMedia<-data.frame(Mixteque$Mod1DatosMedia)
+> 
+> ModelosAlta<-data.frame(Mixteque$Mod1SimulaAlta,Mixteque$Mod2SimulaAlta,Mixteque$Mod3SimulaAlta)
+> DatosAlta<-data.frame(Mixteque$Mod1DatosAlta)
+> 
+> 
+> AICmat[1,]<-ValAIC(ModelosBaja,DatosBaja,K)$AIC
+> AICmat[2,]<-ValAIC(ModelosMedia,DatosMedia,K)$AIC
+> AICmat[3,]<-ValAIC(ModelosAlta,DatosAlta,K)$AIC
+> 
+> AICmat
+           [,1]       [,2]      [,3]
+[1,] -1134.5932 -1076.8033 -1092.405
+[2,]  -996.7739 -1199.2870 -1244.462
+[3,] -1124.3348  -967.3274 -1044.859
+> 
+> minimo<-apply(AICmat,1,min)
+> AICmatG<-sweep(AICmat,1,minimo)
+> 
+> AICmatG
+         [,1]      [,2]     [,3]
+[1,]   0.0000  57.78995 42.18788
+[2,] 247.6883  45.17514  0.00000
+[3,]   0.0000 157.00741 79.47540
+> 
+> ## Ejemplo6
+> data(PlanktonR) #Ejemplo 8.2 pag. 160 de Haeffner
+> data(PlanktonM)
+> ValProfile(PlanktonM,PlanktonR,3)
+$T2
+[1] 0.3843387
+
+$valorp
+[1] 0.9837389
+
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cat("Time elapsed: ", proc.time() - get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.49 0.19 1.24 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

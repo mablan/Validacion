@@ -1,0 +1,54 @@
+**********************
+8-07-2016:
+  * Creé un archivo namespace para definir lo que importa y exporta el paquete y modifique el archivo de descripción
+  * Incluí en las viñetas el artículo de Ciencia e Ingeniería
+  * Hay que verificar y releer la ayuda. Incluir en comentarios lo que se supone debe devolver la función en la mayoría de los casos pues si no no muy claro que hace
+  * Creo que el pdf sigue sin ser generado
+  * Revisar el asunto de la traduccion
+  * Probar en otra máquina linux y en windows
+**********************
+
+31-07-2013: Instalando el paquete de Validación para usar en el generador de clima
+
+* Tuve que compilar desde la fuente por el viejo problema del cambio de codificación de caracteres entre windows y linux.
+  Hay que buscar una manera de resolver eso de manera permanenete. Por ahora, se resolvió simplemente sustituyendo los caracteres
+  que ocasionaban problemas
+  
+  * Tuve que instalar paquetes de latex pues no estaban en el sistema
+
+  * Para compilar desde la fuente usar desde el terminal
+  R CMD check Validacion
+
+  * Para instalar paquete desde el comprimido descargado o construido (como lo haría una persona que se descargue el paquete):
+  install.packages("/Datos1/Documentos/mis programas/validacion/para instalar/Validacion_1.0.tar.gz",repos=NULL,type="source")
+
+  * Pero es mejor hacerlo usando RStudio!!!
+
+  Hay que investigar y corregir todos los errores que reporta el check:
+  * Los errores en los archivos .Rd ocacionados por la codificación se corrigieron (solo que ahora no hay acentos)
+  * Revisando una por una las funciones para eliminar los warnings sobre deprecated, Tengo 44 warnings que involucran:
+  * Warning: mean(<data.frame>) is deprecated.
+  * Warning: sd(<data.frame>) is deprecated.
+  
+  Asi que el plan es revisar uno a uno los archivos fuentes y modificar el código que este dando problemas.
+  TODAS LAS FUNCIONES COMIENZAN CONVIRTIENDO LOS VECTORES DE ENTRADA EN MARCOS DE DATOS. ME PREGUNTO POR QUE SE HIZO DE ESTA
+  MANERA YA QUE NO VEO NINGUNA NECESIDAD DE ESO Y AHORA ES JUSTAMENTE ESO LO QUE ESTA CAUSANDO PROBLEMAS
+  En ValAIC.R no parece haber problemas 
+  En ValBayes.R tampoco
+  Usando find "mean" en archivos se consigueron problemas en:
+  Los problemas se resuelven cambiando mean por colMeans o sapply(*,sd)
+  ** ValMAE.R ...Listo
+  ** ValEF.R ...Listo
+  ** ValTheil.R ...Listo
+  ** ValMSE.R ...listo
+  ** Listo
+
+  Ahora tengo problemas es con la creación del documento pdf y el latex
+  Resuelto. Pero no genera manuales en pdf o salida en html. Reviso mañana
+
+01-08-2013:
+  No consigo hacer el pdf pero ya si html.
+  PENDIENTE: * Probar instalación en windows y en una maquina linux diferente.
+             * "Build" el paquete en windows (depende del paso anterior)
+
+  

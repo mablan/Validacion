@@ -1,0 +1,20 @@
+Acerca del enconding:
+
+Verificar que reportan los siguientes comandos en windows:
+> Sys.getlocale()
+[1] "LC_CTYPE=es_CO.UTF-8;LC_NUMERIC=C;LC_TIME=es_VE.UTF-8;LC_COLLATE=es_CO.UTF-8;LC_MONETARY=es_VE.UTF-8;LC_MESSAGES=es_CO.UTF-8;LC_PAPER=C;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=es_VE.UTF-8;LC_IDENTIFICATION=C"
+
+y:
+> l10n_info()
+$MBCS
+[1] TRUE
+
+$`UTF-8`
+[1] TRUE
+
+$`Latin-1`
+[1] FALSE
+
+Y luego se puede usar: Sys.setlocale(category = "LC_ALL", locale = "") para establecer la codificación sin importar el sistema
+donde se corra (O al menos esa es la idea)
+

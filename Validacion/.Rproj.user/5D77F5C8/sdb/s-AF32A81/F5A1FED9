@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "**********************\n8-07-2016:\n  * Creé un archivo namespace para definir lo que importa y exporta el paquete y modifique el archivo de descripción\n  * Incluí en las viñetas el artículo de Ciencia e Ingeniería\n  * Hay que verificar y releer la ayuda. Incluir en comentarios lo que se supone debe devolver la función en la mayoría de los casos pues si no no muy claro que hace\n  * Creo que el pdf sigue sin ser generado\n  * Revisar el asunto de la traduccion\n  * Probar en otra máquina linux y en windows\n**********************\n\n31-07-2013: Instalando el paquete de Validación para usar en el generador de clima\n\n* Tuve que compilar desde la fuente por el viejo problema del cambio de codificación de caracteres entre windows y linux.\n  Hay que buscar una manera de resolver eso de manera permanenete. Por ahora, se resolvió simplemente sustituyendo los caracteres\n  que ocasionaban problemas\n  \n  * Tuve que instalar paquetes de latex pues no estaban en el sistema\n\n  * Para compilar desde la fuente usar desde el terminal\n  R CMD check Validacion\n\n  * Para instalar paquete desde el comprimido descargado o construido (como lo haría una persona que se descargue el paquete):\n  install.packages(\"/Datos1/Documentos/mis programas/validacion/para instalar/Validacion_1.0.tar.gz\",repos=NULL,type=\"source\")\n\n  * Pero es mejor hacerlo usando RStudio!!!\n\n  Hay que investigar y corregir todos los errores que reporta el check:\n  * Los errores en los archivos .Rd ocacionados por la codificación se corrigieron (solo que ahora no hay acentos)\n  * Revisando una por una las funciones para eliminar los warnings sobre deprecated, Tengo 44 warnings que involucran:\n  * Warning: mean(<data.frame>) is deprecated.\n  * Warning: sd(<data.frame>) is deprecated.\n  \n  Asi que el plan es revisar uno a uno los archivos fuentes y modificar el código que este dando problemas.\n  TODAS LAS FUNCIONES COMIENZAN CONVIRTIENDO LOS VECTORES DE ENTRADA EN MARCOS DE DATOS. ME PREGUNTO POR QUE SE HIZO DE ESTA\n  MANERA YA QUE NO VEO NINGUNA NECESIDAD DE ESO Y AHORA ES JUSTAMENTE ESO LO QUE ESTA CAUSANDO PROBLEMAS\n  En ValAIC.R no parece haber problemas \n  En ValBayes.R tampoco\n  Usando find \"mean\" en archivos se consigueron problemas en:\n  Los problemas se resuelven cambiando mean por colMeans o sapply(*,sd)\n  ** ValMAE.R ...Listo\n  ** ValEF.R ...Listo\n  ** ValTheil.R ...Listo\n  ** ValMSE.R ...listo\n  ** Listo\n\n  Ahora tengo problemas es con la creación del documento pdf y el latex\n  Resuelto. Pero no genera manuales en pdf o salida en html. Reviso mañana\n\n01-08-2013:\n  No consigo hacer el pdf pero ya si html.\n  PENDIENTE: * Probar instalación en windows y en una maquina linux diferente.\n             * \"Build\" el paquete en windows (depende del paso anterior)\n\n  ",
+    "created" : 1375285434201.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "773507232",
+    "id" : "F5A1FED9",
+    "lastKnownWriteTime" : 1468020293,
+    "last_content_update" : 0,
+    "path" : "/Datos1/Documentos/mis programas/validacion/leeme",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

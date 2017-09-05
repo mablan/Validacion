@@ -1,0 +1,4 @@
+importFrom(stats,na.omit,cor,lm,t.test,sd,pf)
+importFrom(ICSNP,HotellingsT2)
+export(ValAIC,ValBayes,ValCorrela,ValEF,ValMAE,ValMSE, ValProfile, ValPruebaF, ValPruebat,ValR2,ValTheil,ValWillmott)
+

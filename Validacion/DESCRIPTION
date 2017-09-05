@@ -1,0 +1,22 @@
+Package: Validacion
+Type: Package
+Title: Validacion de Modelos de Simulacion Continua
+Version: 1.0
+Author: Magdiel Ablan, Renny Marquez, Yuraima Rivas, Jose Querales, Ana Lucia
+    Molina
+Maintainer: Magdiel Ablan <mablan@ula.ve>
+    Renny Marquez <marquezrenny@ula.ve>
+Description: La validacion es una fase importante del proceso de simulacion que
+    permite evaluar la calidad de un modelo. Esta libreria proporciona metodos 
+    para comparar datos u observaciones del sistema real con predicciones generadas
+    por el modelo. Se incluyen varios metodos tipicamente utilizados para validar 
+    modelos de simulacion continua: desde indices simples tales como el error 
+    cuadratico medio y sus derivados (indice de Theil, indice de eficiencia, etc.) 
+    hasta metodos estadisticos clasicos (regresiones de predicciones del modelo 
+    versus datos, pruebas t-pareadas, entre otros). Se incluyen ademas metodos 
+    estadisticos bayesianos y basados en informacion que permiten discriminar entre 
+    versiones alternativas de un modelo.
+License: GPL(>=2)
+LazyLoad: yes
+Depends:ICSNP
+

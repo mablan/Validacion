@@ -1,5 +1,5 @@
 # Validacion
-## na librería en R para validación de modelos de simulación
+## Una librería en R para validación de modelos de simulación
 
 La validación es una fase importante del proceso de simulación que permite evaluar la calidad de un modelo.
 Especı́ficamente en el caso de modelos de simulación continua se comparan datos u observaciones del sistema

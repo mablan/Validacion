@@ -1,5 +1,5 @@
 # Validacion
-## R package to validate continuous simulation models
+## na librería en R para validación de modelos de simulación
 
 La validación es una fase importante del proceso de simulación que permite evaluar la calidad de un modelo.
 Especı́ficamente en el caso de modelos de simulación continua se comparan datos u observaciones del sistema
@@ -22,3 +22,5 @@ to classical statistical methods (model vs data regressions, paired t-test and o
 statistical methods and information criteria methods that allow choosing between different models. The library
 includes several data frames, help and a manual for better understanding of the techniques and its application.
 The library was developed in R language and is available.
+
+http://erevistas.saber.ula.ve/index.php/cienciaeingenieria/article/view/3948/375
